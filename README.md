@@ -53,7 +53,3 @@ version would proxy requests through a serverless function.
 
 Photos by [Unsplash](https://unsplash.com) contributors, shown with attribution
 as required by the Unsplash API guidelines.
-
-## License
-
-MIT
