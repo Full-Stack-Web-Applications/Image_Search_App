@@ -1,152 +1,59 @@
-# Image Search App (React + Vite)
+# Image Search App
 
-A small React application built with Vite that searches images from Unsplash, displays results as a gallery, supports a
-modal preview, and provides a "Load More" pagination experience. It features toasts for user feedback and a top bar
-loader while fetching.
+Search photos from Unsplash and browse them in a responsive gallery with a modal
+preview, "Load More" pagination and toast feedback.
 
-This project started from the Vite React template and uses modern React (StrictMode) with functional components and
-hooks.
+**[Live demo]([https://YOUR-NEW-URL.vercel.app](https://goit-react-hw-04-virid-two-69.vercel.app))**
 
-## Tech Stack
 
-- Language: JavaScript (ESNext)
-- Framework/Library: React 19
-- Build Tool/Dev Server: Vite 7
-- HTTP Client: axios
-- UI/UX utilities: react-hot-toast, react-modal, react-spinners
-- Linting: ESLint 9 with React hooks and React Refresh plugins
+<img width="1046" height="707" alt="SCR-20261010-urdd" src="https://github.com/user-attachments/assets/fbc21329-e024-4a3e-9bb7-2ec956c61df5" />
 
-## Requirements
+## Features
 
-- Node.js >= 18
-- npm (comes with Node) — project uses package-lock.json (npm is the package manager)
-- Modern browser for running the app locally via Vite dev server
+- Search Unsplash by keyword
+- Gallery grid with modal preview (react-modal)
+- "Load More" pagination
+- Loading indicator and toast messages for empty input and errors
+- [Rate-limit error message: verify and describe]
 
-## Getting Started
+## Tech stack
 
-1) Install dependencies
+React 19 · Vite · Axios · react-modal · react-hot-toast · react-spinners · ESLint
 
-- npm install
+## Getting started
 
-2) Run the development server
+```bash
+git clone https://github.com/Full-Stack-Web-Applications/Image_Search_App.git
+cd Image_Search_App
+cp .env.example .env.local    # add your Unsplash access key
+npm install
+npm run dev
+```
 
-- npm run dev
-  Then open the URL shown in the terminal (typically http://localhost:5173/).
+Requires Node.js 20.19+ (check the Vite docs for the exact range).
+Get a key at https://unsplash.com/developers.
 
-3) Build for production
+## Configuration
 
-- npm run build
+| Variable | Description |
+|---|---|
+| `VITE_UNSPLASH_ACCESS_KEY` | Unsplash API access key |
 
-4) Preview the production build locally
+`VITE_` variables are embedded in the client bundle. This app calls Unsplash
+directly from the browser (acceptable for a demo-level key); a production
+version would proxy requests through a serverless function.
 
-- npm run preview
+## Limitations and next steps
 
-5) Lint the project
+- No automated tests yet (planned: Vitest + React Testing Library)
+- Demo-mode Unsplash rate limit applies
+- Accessibility review of the modal and controls pending
 
-- npm run lint
+## Credits
 
-## Available Scripts (from package.json)
-
-- dev: Start Vite dev server
-- build: Build the app using Vite
-- preview: Preview the production build
-- lint: Run ESLint on the project
-
-## Entry Points and App Flow
-
-- index.html — root HTML that loads the app
-- src/main.jsx — application entry that mounts React to #root
-- src/App.jsx — main application component orchestrating search, gallery, modal, loader, and toasts
-
-Key modules/components:
-
-- src/contents/FetchImages.js — wraps Unsplash Search API using axios
-- src/contents/SearchBar/SearchBar.jsx — handles search input and form submission
-- src/contents/ImageGalery/ImageGallery.jsx — renders image thumbnails grid
-- src/contents/ImageModal/ImageModal.jsx — shows selected image in a modal (react-modal)
-- src/contents/LoadMore/LoadMoreBtn.jsx — "Load More" button for pagination
-
-## Environment Variables
-
-The app calls the Unsplash API. Currently, an access key (client_id) is hard-coded in src/contents/FetchImages.js. For
-real usage, you should store secrets in environment variables and not commit them to the repo.
-
-Suggested Vite .env variables:
-
-- VITE_UNSPLASH_ACCESS_KEY=your_unsplash_access_key_here
-- VITE_API_BASE=https://api.unsplash.com (optional; defaults to Unsplash API)
-
-TODO:
-
-- Refactor src/contents/FetchImages.js to read from import.meta.env.VITE_UNSPLASH_ACCESS_KEY and (optionally)
-  import.meta.env.VITE_API_BASE instead of hard-coded values.
-- Document rate limits and usage constraints per your Unsplash account.
-
-Create a .env.local (not committed) at project root:
-VITE_UNSPLASH_ACCESS_KEY=...
-VITE_API_BASE=https://api.unsplash.com
-
-Note: Vite only exposes env vars prefixed with VITE_.
-
-## How to Use the App
-
-- Type a query in the search bar and submit.
-- A loader bar appears while fetching.
-- Thumbnails are shown; click any image to open it in a modal.
-- Use the Load More button to fetch more results (pagination through Unsplash search/photos).
-- Toast messages appear for empty input and error cases.
-
-## Project Structure (key files)
-
-- README.md — this file
-- index.html — Vite entry HTML
-- vite.config.js — Vite configuration
-- eslint.config.js — ESLint configuration
-- package.json — scripts and dependencies
-- src/
-    - main.jsx — React app entry
-    - App.jsx — main app component
-    - App.css, index.css — global styles
-    - contents/
-        - FetchImages.js — axios client for Unsplash
-        - SearchBar/
-            - SearchBar.jsx
-            - SearchBar.module.css
-        - ImageGallery/
-            - ImageGallery.jsx
-            - ImageGallery.module.css
-        - ImageModal/
-            - ImageModal.jsx
-            - ImageModal.module.css
-        - LoadMore/
-            - LoadMoreBtn.jsx
-            - LoadMoreBtn.module.css
-
-## Testing
-
-No automated tests or test scripts are currently defined in package.json.
-
-TODO:
-
-- Add a basic test setup (e.g., Vitest + React Testing Library) and a test script, e.g. "test" and "test:watch".
-
-## Known Limitations / TODOs
-
-- client_id for Unsplash API is hard-coded — move to environment variables (see above).
-- No tests configured — add unit/component tests.
-- Accessibility: review keyboard navigation and ARIA for modal and controls.
-- Error handling: improve user-visible error details (network/offline, rate limit exceeded).
+Photos by [Unsplash](https://unsplash.com) contributors, shown with attribution
+as required by the Unsplash API guidelines.
 
 ## License
 
-No license file detected in this repository.
-
-TODO:
-
-- Choose and add a LICENSE file (e.g., MIT, Apache-2.0) and update this section accordingly.
-
-## Acknowledgements
-
-- Built with React + Vite
-- Uses Unsplash API for images
-- Utilities: react-hot-toast, react-modal, react-spinners, axios
+MIT
